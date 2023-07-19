@@ -1,0 +1,47 @@
+<input
+  [type]="type"
+  class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+  [placeholder]="placeholder"
+  [formControl]="control"
+/>
+<ng-container *ngIf="control.touched && control.dirty">
+  <p
+    *ngIf="control.errors?.['required']"
+    class="text-red-400"
+  >
+    Field Is Required
+  </p>
+  <p
+    *ngIf="control.errors?.['minlength']"
+    class="text-red-400"
+  >
+    The value you inputted is
+    {{ control.errors?.['minlength'].actualLength }}
+    character Long. It must be at least
+    {{ control.errors?.['minlength'].requiredLength }}
+    character long.
+  </p>
+
+  <p *ngIf="control.errors?.['email']" class="text-red-400">
+    You must enter a valid Email Address
+  </p>
+
+  <p *ngIf="control.errors?.['min'] || control.errors?.['max']" class="text-red-400">
+    You must be between 12 to 50
+  </p>
+  <p *ngIf="control.errors?.['noMatch']" class="text-red-400">
+    Password Do Not Match
+  </p>
+  <p *ngIf="control.errors?.['emailTaken']" class="text-red-400">
+    Email Taken. Please try with another Email
+  </p>
+  <ul *ngIf="control.errors?.['pattern']" class="text-red-400">
+        <li>Must Contain 8 Character</li>
+        <li>Must Contain at Least 1 Capital Letter</li>
+        <li>Must Contain at Least 1 Small Letter</li>
+        <li>Must Contain at Least 1 Number</li>
+        <li>Must Contain at Least 1 Symbol</li>
+  </ul>
+
+
+</ng-container>
